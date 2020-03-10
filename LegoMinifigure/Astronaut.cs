@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LegoMinifigure.Composition.Heads;
+using LegoMinifigure.Composition.Legs;
+using LegoMinifigure.Composition.Torsos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,11 +21,17 @@ namespace LegoMinifigure
         public string Name { get; } //removing set makes value read only, can only bet set once in the constructor
         public string Job { get; private set; } // private set must be set by the constructor or a method in this class
         public int O2Level { private get; set; } //can't read the property, but can set it (useful for sensitive info)
+        public AstroTorso Torso { get; set; }
+        public AstroLegs Legs { get; set; }
+        public AstroHead Head { get; set; }
 
-        public Astronaut(string name, string job)
+        public Astronaut(string name, string job, AstroHead head, AstroTorso torso, AstroLegs legs)
         {
             Name = name;
             Job = job;
+            Head = head;
+            Torso = torso;
+            Legs = legs;
         }
 
         public void Promote()
@@ -32,12 +41,11 @@ namespace LegoMinifigure
 
         public void DoYourJob()
         {
-            switch (Job)
-            {
-                default:
-                    Console.WriteLine($"{Name} is doing all their {Job} duties...");
-                    break;
-            }
+            Console.WriteLine($"{Name} is doing all their {Job} duties...");
+            Legs.Walk(15);
+            Head.EatPie("pumpkin");
+            Torso.Flex();
+            Legs.Walk(10);
         }
     }
 }
