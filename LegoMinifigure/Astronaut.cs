@@ -21,11 +21,11 @@ namespace LegoMinifigure
         public string Name { get; } //removing set makes value read only, can only bet set once in the constructor
         public string Job { get; private set; } // private set must be set by the constructor or a method in this class
         public int O2Level { private get; set; } //can't read the property, but can set it (useful for sensitive info)
-        public AstroTorso Torso { get; set; }
+        public TorsoBase Torso { get; set; }
         public AstroLegs Legs { get; set; }
         public AstroHead Head { get; set; }
 
-        public Astronaut(string name, string job, AstroHead head, AstroTorso torso, AstroLegs legs)
+        public Astronaut(string name, string job, AstroHead head, TorsoBase torso, AstroLegs legs)
         {
             Name = name;
             Job = job;
@@ -44,7 +44,7 @@ namespace LegoMinifigure
             Console.WriteLine($"{Name} is doing all their {Job} duties...");
             Legs.Walk(15);
             Head.EatPie("pumpkin");
-            Torso.Flex();
+            Torso.Flex(); // because we are using TorsoBase, can only call common methods from the base. Can't use ChangeThermostat();
             Legs.Walk(10);
         }
     }

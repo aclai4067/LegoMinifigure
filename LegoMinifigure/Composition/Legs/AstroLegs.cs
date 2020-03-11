@@ -4,13 +4,6 @@ using System.Text;
 
 namespace LegoMinifigure.Composition.Legs
 {
-    enum ShoeType
-    {
-        None,
-        Heels,
-        Sneakers,
-        MoonBoots
-    }
     class AstroLegs
     {
         public bool HasPants { get; set; }

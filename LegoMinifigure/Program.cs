@@ -2,7 +2,7 @@
 using LegoMinifigure.Composition.Legs;
 using LegoMinifigure.Composition.Torsos;
 using System;
-
+using System.Collections.Generic;
 
 namespace LegoMinifigure
 {
@@ -18,12 +18,19 @@ namespace LegoMinifigure
                 Helmeted = true
             };
 
-            var torso = new AstroTorso()
+            var atorso = new AstroTorso()
             {
                 Hands = HandType.Baby,
                 ChiseledAbs = true,
                 HasShirt = true,
                 NumberOfArms = 3
+            };
+
+            var dtorso = new DadBodTorso()
+            {
+                Hands = HandType.Tentacle,
+                HasShirt = true,
+                IsHairy = false
             };
 
             var legs = new AstroLegs()
@@ -32,7 +39,7 @@ namespace LegoMinifigure
                 Shoes = ShoeType.MoonBoots
             };
 
-            var astronaut = new Astronaut("Major Tom", "Janitor", head, torso, legs);
+            var astronaut = new Astronaut("Major Tom", "Janitor", head, dtorso, legs);
             astronaut.Promote();
             astronaut.DoYourJob();
 
@@ -49,6 +56,15 @@ namespace LegoMinifigure
             casper.Haunt("Whipstaff Manor");
             casper.Spook();
 
+            var torsos = new List<TorsoBase>();
+            torsos.Add(dtorso);
+            torsos.Add(atorso);
+
+            foreach (var torso in torsos)
+            {
+                torso.Breathe();
+                torso.Flex();
+            }
 
             Console.ReadKey();
         }
