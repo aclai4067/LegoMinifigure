@@ -64,6 +64,27 @@ namespace LegoMinifigure
             {
                 torso.Breathe();
                 torso.Flex();
+
+                switch (torso)
+                {
+                    case DadBodTorso dbod:
+                        dbod.ChangeThermostat("Hot");
+                        break;
+                }
+            }
+
+            var colorfulThings = new List<IColorful> { dtorso, atorso, new Baby() };
+
+            foreach (var colorfulThing in colorfulThings)
+            {
+                Console.WriteLine(colorfulThing.Color);
+
+                switch (colorfulThing)
+                {
+                    case IMoveable mover:
+                        mover.Move(5);
+                        break;
+                }
             }
 
             Console.ReadKey();
